@@ -45,6 +45,7 @@ use Contributte\Datagrid\Utils\ItemDetailForm;
 use Contributte\Datagrid\Utils\Sorting;
 use DateTime;
 use InvalidArgumentException;
+use Nette\Application\Attributes\Persistent;
 use Nette\Application\ForbiddenRequestException;
 use Nette\Application\IPresenter;
 use Nette\Application\Request;
@@ -85,7 +86,7 @@ class Datagrid extends Control
 		'_grid_hidden_columns_manipulated',
 	];
 
-	public static string $iconPrefix = 'fa fa-';
+	public static string $iconPrefix = 'fas fa-';
 
 	public static string $btnSecondaryClass = 'btn-default btn-secondary';
 
@@ -133,13 +134,13 @@ class Datagrid extends Control
 	 */
 	public bool $strictStorageFilterValues = true;
 
-	/** @persistent */
+	#[Persistent]
 	public int $page = 1;
 
-	/** @persistent */
+	#[Persistent]
 	public string|int|null $perPage = null;
 
-	/** @persistent */
+	#[Persistent]
 	public array $sort = [];
 
 	public array $defaultSort = [];
@@ -150,13 +151,11 @@ class Datagrid extends Control
 
 	public bool $defaultSortUseOnReset = true;
 
-	/** @persistent */
+	#[Persistent]
 	public array $filter = [];
 
 	/** @var callable|null */
 	protected $sortCallback = null;
-
-	protected bool $useHappyComponents = true;
 
 	/** @var callable */
 	protected $rowCallback;
@@ -525,22 +524,6 @@ class Datagrid extends Control
 	{
 		return __DIR__ . '/templates/datagrid.latte';
 	}
-
-	/**
-	 * @return static
-	 */
-	public function useHappyComponents(bool $useHappyComponents): self
-	{
-		$this->useHappyComponents = $useHappyComponents;
-
-		return $this;
-	}
-
-	public function shouldUseHappyComponents(): bool
-	{
-		return $this->useHappyComponents;
-	}
-
 
 	/********************************************************************************
 	 *                                   SORTING *

@@ -5,7 +5,7 @@ import {
 	AutosubmitPlugin,
 	CheckboxPlugin,
 	ConfirmPlugin,
-	HappyPlugin,
+	EditablePlugin,
 	InlinePlugin,
 	NetteFormsPlugin,
 	SelectpickerPlugin,
@@ -13,7 +13,7 @@ import {
 } from "./plugins";
 import { SortableJS } from "./integrations";
 import { DatepickerPlugin } from "./plugins";
-import { Happy, TomSelect, VanillaDatepicker } from "./integrations";
+import { TomSelect, VanillaDatepicker } from "./integrations";
 
 export class Datagrid extends EventTarget {
 	private static readonly defaultOptions: DatagridOptions = {
@@ -215,9 +215,9 @@ export const createFullDatagrids = (ajax: Ajax, _options: Partial<DatagridsOptio
 				new AutosubmitPlugin(),
 				new CheckboxPlugin(),
 				new ConfirmPlugin(),
+				new EditablePlugin(),
 				new InlinePlugin(),
 				new NetteFormsPlugin(),
-				new HappyPlugin(new Happy()),
 				new SortablePlugin(new SortableJS()),
 				new DatepickerPlugin(new VanillaDatepicker()),
 				new SelectpickerPlugin(new TomSelect(Select))

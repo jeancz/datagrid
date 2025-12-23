@@ -39,21 +39,6 @@ class SimpleTranslator implements Translator
 
 	public function __construct(array $dictionary = [])
 	{
-		// BC support for 'ublaboo' translations
-		$oldPrefix = 'ublaboo_';
-		$newPrefix = 'contributte_';
-		foreach ($dictionary as $key => $value) {
-			if (str_starts_with($key, $oldPrefix)) {
-				$newKey = $newPrefix . substr($key, strlen($oldPrefix));
-				// Only change the keys that are in the default $dictionary (other keys are left as-is)
-				if (array_key_exists($newKey, $this->dictionary)) {
-					trigger_error(sprintf("Translation key '%s' is deprecated, please use '%s' instead", $key, $newKey), E_USER_DEPRECATED);
-					unset($dictionary[$key]);
-					$dictionary[$newKey] = $value;
-				}
-			}
-		}
-
 		$this->dictionary = array_merge($this->dictionary, $dictionary);
 	}
 
